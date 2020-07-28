@@ -16,6 +16,7 @@ This is the code for "Practical Blind Membership Inference Attack via Differenti
 dataLoader.py is to provide the data for other modules.
 
 ### Train TargetModel:
+
 ```bash
 #Train TargetModel as following:
 python TargetModel.py CIFAR ResNet50
@@ -60,7 +61,7 @@ python BlindMI_1class.py CIFAR ResNet50
 
 This attack is to use our gernerated non-Members to train a one-class classifier(you can also try another one), and applies it to the original data.
 
-### Prior Attacks:
+### Prior Attacks without Shadow Model:
 
 + Label-only Attack:
 
@@ -76,3 +77,20 @@ python Label_Only_Attack.py CIFAR ResNet50
 python Label_Only_Attack.py CIFAR ResNet50
 ```
 
+### Prior Attacks with Shadow Model:
+
+
++ Train Shadow Model:
+There are two conditions, BlackBox setting and GrayBox setting, for Shadow Model. You could train the shadow model with different model.The first parameter is DATA_NAME, the second one is Target Model and the last one is Shadow Model.
+
+```bash
+#Train ShadowModel as following:
+python ShadowModel.py CIFAR ResNet50 CNN
+```
+
++ Loss_Threshold Attack:
+
+```bash
+#Train ShadowModel as following:
+python ShadowModel.py CIFAR ResNet50 CNN
+```
