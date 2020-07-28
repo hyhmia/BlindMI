@@ -23,7 +23,9 @@ python TargetModel.py CIFAR ResNet50
 The model weights will be saved in the following folder: weights/Target. And you could change the dataset's name and model's name, which is included in dataLoader.py and ModelUtil.py seperately.
 
 ### BlindMI-Diff Attack:
+
 + BlindMI-Diff-w Attack
+
 ```bash
 #Try BlindMI-Diff-w as following:
 python BlindMI_Diff_W.py CIFAR ResNet50
@@ -39,12 +41,24 @@ python BlindMI_Diff_W_Ori.py CIFAR ResNet50
 ```
 
 + BlindMI-Diff-w/o:
+
 ```bash
 #Try BlindMI-Diff-w/o as following:
 python BlindMI_Diff_Without_Gen.py CIFAR ResNet50
 ```
 This is under the condition that we cannot use non-Member gernerated by ourselves. It has two ways to get a rough part of non-member data.
 
+
+### BlindMI-1class:
+
++ One-Class SVM:
+
+```bash
+#Try BlindMI-Diff-w as following:
+python BlindMI_1class.py CIFAR ResNet50
+```
+
+This attack is to use our gernerated non-Members to train a one-class classifier.
 
 
 
