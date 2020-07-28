@@ -125,11 +125,12 @@ def load_CUB(model_mode):
 
 def load_EYE_PACS(model_mode):
     """
-        Loads EyePACs dataset and maps it to Target Model and Shadow Model.
-        :param model_mode: one of "TargetModel" and "ShadowModel".
-        :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
-        :raise: ValueError: in case of invalid `model_mode`.
-        """
+    Loads EyePACs dataset and maps it to Target Model and Shadow Model.
+    If you would like to use this dataset, you could refer to the preprocess method mentioned in Kaggle.
+    :param model_mode: one of "TargetModel" and "ShadowModel".
+    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :raise: ValueError: in case of invalid `model_mode`.
+    """
     if model_mode not in ['TargetModel', 'ShadowModel']:
         raise ValueError('model_mode must be one of TargetModel, ShadowModel.')
     mode = "target" if model_mode == "TargetModel" else "shadow"
@@ -162,11 +163,12 @@ def load_EYE_PACS(model_mode):
 
 def load_Purchase_50(model_mode):
     """
-        Loads Purchase dataset and maps it to Target Model and Shadow Model.
-        :param model_mode: one of "TargetModel" and "ShadowModel".
-        :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
-        :raise: ValueError: in case of invalid `label_mode`.
-        """
+    Loads Purchase dataset and maps it to Target Model and Shadow Model.
+    This data comes from privacytrustlab/ml_privacy_meter, a simplified version.
+    :param model_mode: one of "TargetModel" and "ShadowModel".
+    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :raise: ValueError: in case of invalid `label_mode`.
+    """
     if model_mode not in ['TargetModel', 'ShadowModel']:
         raise ValueError('model_mode must be one of TargetModel, ShadowModel.')
 
@@ -181,33 +183,6 @@ def load_Purchase_50(model_mode):
 
     x_test = testDF.iloc[:, range(600)].values
     y_test = tf.keras.utils.to_categorical([i-1 for i in testDF.loc[:, 'label']])
-    m_test = np.zeros(y_test.shape[0])
-
-    member = np.r_[m_train, m_test]
-    return (x_train, y_train), (x_test, y_test), member
-
-
-def load_Purchase_100(model_mode):
-    """
-        Loads Purchase dataset and maps it to Target Model and Shadow Model.
-        :param model_mode: one of "TargetModel" and "ShadowModel".
-        :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
-        :raise: ValueError: in case of invalid `label_mode`.
-        """
-    if model_mode not in ['TargetModel', 'ShadowModel']:
-        raise ValueError('model_mode must be one of TargetModel, ShadowModel.')
-
-    # Initialize Data
-    dataframe = pd.read_csv('data/purchase_100_{}.csv'.
-                            format("target" if model_mode == 'TargetModel' else "shadow"))
-    trainDF, testDF = train_test_split(dataframe, train_size=0.5, random_state=1,
-                                       stratify=dataframe['label'].values)
-    x_train = trainDF.iloc[:, range(600)].values
-    y_train = tf.keras.utils.to_categorical([i - 1 for i in trainDF.loc[:, 'label']])
-    m_train = np.ones(y_train.shape[0])
-
-    x_test = testDF.iloc[:, range(600)].values
-    y_test = tf.keras.utils.to_categorical([i - 1 for i in testDF.loc[:, 'label']])
     m_test = np.zeros(y_test.shape[0])
 
     member = np.r_[m_train, m_test]
