@@ -25,7 +25,7 @@ The model weights will be saved in the following folder: weights/Target. And you
 ### BlindMI-Diff Attack:
 + BlindMI-Diff-w Attack
 ```bash
-#Train TargetModel as following:
+#Try BlindMI-Diff-w as following:
 python BlindMI_Diff_W.py CIFAR ResNet50
 ```
 This attack is based on a non-Member gernerated function and only use 20 generated non-Members to extraly prode the target model.
@@ -34,13 +34,13 @@ You could use the other Datasets and Target Models trained in last section. The 
 You can also try the following attack and the difference is that it will use the whole gernerated non-Members .
 
 ```bash
-#Train TargetModel as following:
+#Try BlindMI-Diff-w as following:
 python BlindMI_Diff_W_Ori.py CIFAR ResNet50
 ```
 
 + BlindMI-Diff-w/o:
 ```bash
-#Train TargetModel as following:
+#Try BlindMI-Diff-w/o as following:
 python BlindMI_Diff_Without_Gen.py CIFAR ResNet50
 ```
 This is under the condition that we cannot use non-Member gernerated by ourselves. It has two ways to get a rough part of non-member data.
