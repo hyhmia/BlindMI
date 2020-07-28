@@ -38,4 +38,14 @@ You can also try the following attack and the difference is that it will use the
 python BlindMI_Diff_W_Ori.py CIFAR ResNet50
 ```
 
++ BlindMI-Diff-w/o:
+```bash
+#Train TargetModel as following:
+python BlindMI_Diff_Without_Gen.py CIFAR ResNet50
+```
+This is under the condition that we cannot use non-Member gernerated by ourselves. It has two ways to get a rough part of non-member data.
+
+
+
+
 
