@@ -13,4 +13,9 @@ This is the code for "Practical Blind Membership Inference Attack via Differenti
 + Pillow
 ## Code Usage
 dataLoader.py is to provide the data for other modules.
-### TargetModel
+### Train TargetModel:
+```bash
+#Train TargetModel as following:
+python TargetModel.py CIFAR ResNet50
+# The model weights will be saved in the following folder: weights/Target. And you could change the dataset's name and model's name.
+```
