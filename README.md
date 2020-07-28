@@ -58,8 +58,21 @@ This is under the condition that we cannot use non-Member gernerated by ourselve
 python BlindMI_1class.py CIFAR ResNet50
 ```
 
-This attack is to use our gernerated non-Members to train a one-class classifier, and applies it to the original data.
+This attack is to use our gernerated non-Members to train a one-class classifier(you can also try another one), and applies it to the original data.
 
+### Prior Attacks:
 
++ Label-only Attack:
 
+```bash
+#Try BlindMI-Diff-w as following:
+python Label_Only_Attack.py CIFAR ResNet50
+```
+
++ Top1_Threshold Attack:
+
+```bash
+#Try BlindMI-Diff-w as following:
+python Label_Only_Attack.py CIFAR ResNet50
+```
 
