@@ -58,7 +58,7 @@ This is under the condition that we cannot use non-Member gernerated by ourselve
 python BlindMI_1class.py CIFAR ResNet50
 ```
 
-This attack is to use our gernerated non-Members to train a one-class classifier.
+This attack is to use our gernerated non-Members to train a one-class classifier, and applies it to the original data.
 
 
 
