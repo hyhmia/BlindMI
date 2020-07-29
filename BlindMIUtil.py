@@ -2,13 +2,20 @@ import numpy as np
 import tensorflow as tf
 from functools import partial
 import cv2 as cv
+import random
 
-
-def rotate(img_set):
+def gaussian_noise(img_set, mean=0, var=0.001):
     ret = np.empty(img_set.shape)
     for m, image in enumerate(img_set):
-        #image = np.array(image / 255, dtype=float)
-        out = cv.flip(np.uint8(image), 1)
+        image = np.array(image/255, dtype=float)
+        noise = np.random.normal(mean, var ** 0.5, image.shape)
+        out = image + noise
+        if out.min() < 0:
+            low_clip = -1.
+        else:
+            low_clip = 0.
+        out = np.clip(out, low_clip, 1.0)
+        out = np.uint8(out*255)
         ret[m, :] = out
     return ret
 
@@ -25,19 +32,43 @@ def sobel(img_set):
     return ret
 
 
-def gaussian_noise(img_set, mean=0, var=0.15):
+def sp_noise(img_set, prob=0.001):
     ret = np.empty(img_set.shape)
     for m, image in enumerate(img_set):
-        image = np.array(image/255, dtype=float)
-        noise = np.random.normal(mean, var ** 0.5, image.shape)
-        out = image + noise
-        if out.min() < 0:
-            low_clip = -1.
-        else:
-            low_clip = 0.
-        out = np.clip(out, low_clip, 1.0)
-        out = np.uint8(out*255)
-        ret[m, :] = out
+        out = np.zeros(image.shape, np.uint8)
+        thres = 1 - prob
+        for i in range(image.shape[0]):
+            for j in range(image.shape[1]):
+                rdn = random.random()
+                if rdn < prob:
+                    out[i][j] = 0
+                elif rdn > thres:
+                    out[i][j] = 255
+                else:
+                    out[i][j] = image[i][j]
+        ret[m,:] = out
+    return ret
+
+
+def scharr(img_set):
+    ret = np.empty(img_set.shape)
+    for i, img in enumerate(img_set):
+        grad_x = cv.Scharr(np.float32(img), cv.CV_32F, 1, 0)
+        grad_y = cv.Scharr(np.float32(img), cv.CV_32F, 0, 1)
+        gradx = cv.convertScaleAbs(grad_x)
+        grady = cv.convertScaleAbs(grad_y)
+        gradxy = cv.addWeighted(gradx, 0.5, grady, 0.5, 0)
+        ret[i, :] = gradxy
+
+    return ret
+
+
+def laplace(img_set):
+    ret = np.empty(img_set.shape)
+    for i, img in enumerate(img_set):
+        gray_lap = cv.Laplacian(np.float32(img), cv.CV_32F, ksize=3)
+        dst = cv.convertScaleAbs(gray_lap)
+        ret[i, :] = dst
     return ret
 
 
@@ -84,7 +115,8 @@ def gaussian_kernel_matrix(x, y, sigmas):
 
 
 def maximum_mean_discrepancy(x, y, kernel=gaussian_kernel_matrix):
-    r"""Computes the Maximum Mean Discrepancy (MMD) of two samples: x and y.
+    '''
+    Computes the Maximum Mean Discrepancy (MMD) of two samples: x and y.
     Maximum Mean Discrepancy (MMD) is a distance-measure between the samples of
     the distributions of x and y. Here we use the kernel two sample estimate
     using the empirical mean of the two distributions.
@@ -99,7 +131,7 @@ def maximum_mean_discrepancy(x, y, kernel=gaussian_kernel_matrix):
                 GaussianKernelMatrix.
     Returns:
         a scalar denoting the squared maximum mean discrepancy loss.
-    """
+    '''
     with tf.name_scope('MaximumMeanDiscrepancy'):
         # \E{ K(x, x) } + \E{ K(y, y) } - 2 \E{ K(x, y) }
         cost = tf.reduce_mean(kernel(x, x))
