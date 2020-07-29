@@ -47,7 +47,7 @@ python BlindMI_Diff_W_Ori.py CIFAR ResNet50
 #Try BlindMI-Diff-w/o as following:
 python BlindMI_Diff_Without_Gen.py CIFAR ResNet50
 ```
-This is under the condition that we cannot use non-Member gernerated by ourselves. It has two ways to get a rough part of non-member data.
+This is used in the condition where we cannot use non-Member gernerated by ourselves. It has two ways to get a rough part of non-member data.
 
 
 ### BlindMI-1class:
