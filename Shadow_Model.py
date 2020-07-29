@@ -11,7 +11,7 @@ tf.config.experimental.set_memory_growth(tf.config.experimental.list_physical_de
 config = configparser.ConfigParser()
 config.read('shadow_blackBox_config.ini')
 DATA_NAME = sys.argv[1] if len(sys.argv) > 1 else "CIFAR"
-MODEL = sys.argv[2] if len(sys.argv) > 2 else "ResNet50"
+MODEL = sys.argv[2] if len(sys.argv) > 2 else "VGG16"
 EPOCHS = int(config['{}_{}'.format(DATA_NAME, MODEL)]['EPOCHS'])
 SAVED_FOLDER = config['{}_{}'.format(DATA_NAME, MODEL)]['SAVED_FOLDER']
 BATCH_SIZE = 64
@@ -32,14 +32,13 @@ def train(model, x_train, y_train, x_test, y_test):
     model.compile(loss='categorical_crossentropy',
                   optimizer=keras.optimizers.Adam(lr=LEARNING_RATE),
                   metrics=[metrics.CategoricalAccuracy(), metrics.Precision(), metrics.Recall()])
-    checkpoint = ModelCheckpoint(WEIGHTS_PATH, monitor='categorical_accuracy', verbose=1, save_best_only=True,
-                                 mode='max')
+
     model.fit(x_train,
               y_train,
               validation_data=(x_test, y_test),
               batch_size=BATCH_SIZE,
-              epochs=EPOCHS,
-              callbacks=[checkpoint])
+              epochs=EPOCHS)
+    model.save(WEIGHTS_PATH)
 
 
 

@@ -10,7 +10,7 @@ tf.config.experimental.set_memory_growth(tf.config.experimental.list_physical_de
 
 DATA_NAME = sys.argv[1] if len(sys.argv) > 1 else "CIFAR"
 TARGET_MODEL_GENRE = sys.argv[2] if len(sys.argv) > 2 else "ResNet50"
-SHADOW_MODEL_GENRE = sys.argv[3] if len(sys.argv) > 2 else "CNN"
+SHADOW_MODEL_GENRE = sys.argv[3] if len(sys.argv) > 2 else "VGG16"
 NN_ATTACK_WEIGHTS_PATH = "weights/NN_Attack/NN_Attack_{}_{}.hdf5".format(DATA_NAME, SHADOW_MODEL_GENRE)
 TARGET_WEIGHTS_PATH = "weights/Target/{}_{}.hdf5".format(DATA_NAME, TARGET_MODEL_GENRE)
 SHADOW_WEIGHTS_PATH = "weights/BlackShadow/{}_{}.hdf5".format(DATA_NAME, TARGET_MODEL_GENRE)

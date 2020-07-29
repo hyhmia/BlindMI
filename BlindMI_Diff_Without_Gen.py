@@ -70,7 +70,7 @@ def BlindMI_Diff_Threshold(x_, m_true, target_model):
                     mix_2 = tf.concat([non_Mem, [item]], axis=0)
                     dis_new = mmd_loss(mix_2, mix_1, weight=1)
                     m_in_loop[index] = 1
-                    print("dis_new:{}, dis_ori:{}".format(dis_new, dis_ori))
+                    #print("dis_new:{}, dis_ori:{}".format(dis_new, dis_ori))
                     if dis_new > dis_ori:
                         Flag = True
                         m_pred_batch[index] = 0
