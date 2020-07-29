@@ -101,10 +101,10 @@ python Loss_Threshold_Attack.py CIFAR ResNet50 VGG16
 #Try NN_Attack Attack as following:
 python NN_Attack.py CIFAR ResNet50 VGG16
 ```
-+ NN_Attack:
++ Top3_NN_Attack:
 
 ```bash
-#Try Top3_NN_Attack Attack as following:
+#Try Top3_NN_Attack as following:
 python Top3_NN_Attack.py CIFAR ResNet50 VGG16
 ```
 + Top2 + True label Attack:
