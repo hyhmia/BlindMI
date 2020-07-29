@@ -81,6 +81,7 @@ python Label_Only_Attack.py CIFAR ResNet50
 
 
 + Train Shadow Model:
+
 There are two conditions, BlackBox setting and GrayBox setting, for Shadow Model. You could train the shadow model with different model.The first parameter is DATA_NAME, the second one is Target Model and the last one is Shadow Model.
 
 ```bash
