@@ -85,12 +85,31 @@ There are two conditions, BlackBox setting and GrayBox setting, for Shadow Model
 
 ```bash
 #Train ShadowModel as following:
-python ShadowModel.py CIFAR ResNet50 CNN
+python ShadowModel.py CIFAR VGG16
 ```
 
 + Loss_Threshold Attack:
 
 ```bash
-#Train ShadowModel as following:
-python ShadowModel.py CIFAR ResNet50 CNN
+#Try Loss_Threshold Attack as following:
+python Loss_Threshold_Attack.py CIFAR ResNet50 VGG16
+```
+
++ NN_Attack:
+
+```bash
+#Try NN_Attack Attack as following:
+python NN_Attack.py CIFAR ResNet50 VGG16
+```
++ NN_Attack:
+
+```bash
+#Try Top3_NN_Attack Attack as following:
+python Top3_NN_Attack.py CIFAR ResNet50 VGG16
+```
++ Top2 + True label Attack:
+
+```bash
+#Try Top2 + True label Attack as following:
+python Top2_With_True_NN_Attack.py CIFAR ResNet50 VGG16
 ```
