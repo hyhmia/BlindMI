@@ -40,7 +40,7 @@ def threshold_Divide(mix, ratio):
     return m_pred
 
 
-def BlindMI_Diff_Threshold(x_, m_true, target_model):
+def BlindMI_Diff_Single(x_, m_true, target_model):
     '''
     Attck the target with BLINDMI-DIFF-W/O, BLINDMI-DIFF without gernerated non-member.
     Roughly choose the non-member by threshold method.
@@ -80,7 +80,7 @@ def BlindMI_Diff_Threshold(x_, m_true, target_model):
     return np.concatenate(m_true, axis=0), np.concatenate(m_pred, axis=0)
 
 
-def BlindMI_Diff_pre(x_, m_true, target_model):
+def BlindMI_Diff_Bi(x_, m_true, target_model):
     '''
     Attck the target with BLINDMI-DIFF-W/O, BLINDMI-DIFF without gernerated non-member.
     Roughly divide the data into member and non-member by threshold method.
