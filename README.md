@@ -114,3 +114,11 @@ python Top3_NN_Attack.py CIFAR ResNet50 VGG16
 #Try Top2 + True label Attack as following:
 python Top2_With_True_NN_Attack.py CIFAR ResNet50 VGG16
 ```
+
+### Defenses:
+We evaluate our BlindMI under four defenses:
+
++ Memguard: [paper](https://arxiv.org/pdf/1909.10594.pdf) - [code](https://github.com/jjy1994/MemGuard)
++ Diiferential Privacy: [code](https://github.com/tensorflow/privacy)
++ Adverserial Regularization: [paper](https://arxiv.org/pdf/1807.05852.pdf) - [code](https://github.com/NNToan-apcs/python-DP-DL)
++ MMD+Mix-up: [paper](https://arxiv.org/pdf/2002.12062.pdf)
