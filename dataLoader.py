@@ -12,7 +12,7 @@ def load_CH_MNIST(model_mode):
     """
     Loads CH_MNIST dataset and maps it to Target Model and Shadow Model.
     :param model_mode: one of "TargetModel" and "ShadowModel".
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `model_mode`.
     """
     if model_mode not in ['TargetModel', 'ShadowModel']:
@@ -42,7 +42,7 @@ def load_CIFAR(model_mode):
     Loads CIFAR-100 or CIFAR-10 dataset and maps it to Target Model and Shadow Model.
     :param model_mode: one of "TargetModel" and "ShadowModel".
     :param num_classes: one of 10 and 100 and the default value is 100
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `model_mode`.
     """
     if model_mode not in ['TargetModel', 'ShadowModel']:
@@ -71,7 +71,7 @@ def load_CIFAR10(model_mode):
     Loads CIFAR-100 or CIFAR-10 dataset and maps it to Target Model and Shadow Model.
     :param model_mode: one of "TargetModel" and "ShadowModel".
     :param num_classes: one of 10 and 100 and the default value is 100
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `model_mode`.
     """
     if model_mode not in ['TargetModel', 'ShadowModel']:
@@ -99,7 +99,7 @@ def load_CUB(model_mode):
     """
     Loads CALTECH_BIRDS2011 (CUB_200) dataset and maps it to Target Model and Shadow Model.
     :param model_mode: one of "TargetModel" and "ShadowModel".
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `model_mode`.
     """
     if model_mode not in ['TargetModel', 'ShadowModel']:
@@ -128,7 +128,7 @@ def load_EYE_PACS(model_mode):
     Loads EyePACs dataset and maps it to Target Model and Shadow Model.
     If you would like to use this dataset, you could refer to the preprocess method mentioned in Kaggle.
     :param model_mode: one of "TargetModel" and "ShadowModel".
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `model_mode`.
     """
     if model_mode not in ['TargetModel', 'ShadowModel']:
@@ -166,7 +166,7 @@ def load_Purchase_50(model_mode):
     Loads Purchase dataset and maps it to Target Model and Shadow Model.
     This data comes from privacytrustlab/ml_privacy_meter, a simplified version.
     :param model_mode: one of "TargetModel" and "ShadowModel".
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `label_mode`.
     """
     if model_mode not in ['TargetModel', 'ShadowModel']:
@@ -194,7 +194,7 @@ def load_CIFAR_Ratio(model_mode, ratio=1):
     Loads CIFAR-100 or CIFAR-10 dataset and maps it to Target Model and Shadow Model.
     :param model_mode: one of "TargetModel" and "ShadowModel".
     :param num_classes: one of 10 and 100 and the default value is 100
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `model_mode`.
     """
     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar100.load_data(label_mode='fine')
@@ -218,7 +218,7 @@ def load_CIFAR_Class(model_mode, num_classes=100):
     Loads CIFAR-100 dataset and selects the concrete number of classes from it according to superclasses.
     :param model_mode: one of "TargetModel" and "ShadowModel".
     :param num_classes: Recommend to use one of [20, 40 ,60, 80, 100] and the default value is 100
-    :return: Tuple of numpy arrays:'(x_train, y_train, l_train), (x_test, y_test, l_test)'.
+    :return: Tuple of numpy arrays:'(x_train, y_train), (x_test, y_test), member'.
     :raise: ValueError: in case of invalid `model_mode`.
     """
     if model_mode not in ['TargetModel', 'ShadowModel']:
