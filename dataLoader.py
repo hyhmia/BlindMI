@@ -25,11 +25,11 @@ def load_CH_MNIST(model_mode):
                                                         random_state=1 if model_mode == 'TargetModel' else 3,
                                                         stratify=labels.numpy())
 
-    x_train = tf.image.resize(x_train/255, (64, 64))
+    x_train = tf.image.resize(x_train, (64, 64))
     y_train = tf.keras.utils.to_categorical(y_train-1, num_classes=8)
     m_train = np.ones(y_train.shape[0])
 
-    x_test = tf.image.resize(x_test/255, (64, 64))
+    x_test = tf.image.resize(x_test, (64, 64))
     y_test = tf.keras.utils.to_categorical(y_test-1, num_classes=8)
     m_test = np.zeros(y_test.shape[0])
 
@@ -56,11 +56,9 @@ def load_CIFAR(model_mode):
         (x_train, y_train), (x_test, y_test) = (x_train[:10000], y_train[:10000]), \
                                                (x_train[10000:20000], y_train[10000:20000])
 
-    x_train = tf.cast(x_train / 255, dtype=tf.float32)
     y_train = tf.keras.utils.to_categorical(y_train, num_classes=100)
     m_train = np.ones(y_train.shape[0])
 
-    x_test= tf.cast(x_test / 255, dtype=tf.float32)
     y_test = tf.keras.utils.to_categorical(y_test, num_classes=100)
     m_test = np.zeros(y_test.shape[0])
 
@@ -87,11 +85,9 @@ def load_CIFAR10(model_mode):
         (x_train, y_train), (x_test, y_test) = (x_train[:10000], y_train[:10000]), \
                                                (x_train[10000:20000], y_train[10000:20000])
 
-    x_train = tf.cast(x_train / 255, dtype=tf.float32)
     y_train = tf.keras.utils.to_categorical(y_train, num_classes=100)
     m_train = np.ones(y_train.shape[0])
 
-    x_test = tf.cast(x_test / 255, dtype=tf.float32)
     y_test = tf.keras.utils.to_categorical(y_test, num_classes=100)
     m_test = np.zeros(y_test.shape[0])
 
@@ -115,11 +111,11 @@ def load_CUB(model_mode):
     x_test, y_test = tfds.load('caltech_birds2011', split='test' if model_mode == 'TargetModel' else 'train',
                                batch_size=-1, as_supervised=True)
 
-    x_train = tf.image.resize(x_train/255, (150, 150))
+    x_train = tf.image.resize(x_train, (150, 150))
     y_train = tf.keras.utils.to_categorical(y_train, num_classes=200)
     m_train = np.ones(y_train.shape[0])
 
-    x_test = tf.image.resize(x_test/255, (150, 150))
+    x_test = tf.image.resize(x_test, (150, 150))
     y_test = tf.keras.utils.to_categorical(y_test, num_classes=200)
     m_test = np.zeros(y_test.shape[0])
 
@@ -155,7 +151,7 @@ def load_EYE_PACS(model_mode):
         return x_, y_
 
     x_, y_ = set_data(img_folder, label_df)
-    x_train, x_test, y_train, y_test = train_test_split(x_/255, y_, train_size=0.5,
+    x_train, x_test, y_train, y_test = train_test_split(x_, y_, train_size=0.5,
                                                         random_state=1 if model_mode == "TargetModel" else 3,
                                                         stratify=y_)
     m_train = np.ones(y_train.shape[0])
@@ -207,11 +203,9 @@ def load_CIFAR_Ratio(model_mode, ratio=1):
                                                (x_test, y_test)
     x_train, y_train = x_train[:int(20000/(ratio+1))], y_train[:int(20000/(ratio+1))]
 
-    x_train = tf.cast(x_train / 255, dtype=tf.float32)
     y_train = tf.keras.utils.to_categorical(y_train, num_classes=100)
     m_train = np.ones(y_train.shape[0])
 
-    x_test = tf.cast(x_test / 255, dtype=tf.float32)
     y_test = tf.keras.utils.to_categorical(y_test, num_classes=100)
     m_test = np.zeros(y_test.shape[0])
 
@@ -261,10 +255,7 @@ def load_CIFAR_Class(model_mode, num_classes=100):
         (x_train, y_train), (x_test, y_test) = (x_train[:100*num_classes], y_train[:100*num_classes]), \
                                                (x_train[100*num_classes:200*num_classes],
                                                 y_train[100*num_classes:200*num_classes])
-    x_train = tf.cast(x_train / 255, dtype=tf.float32)
     m_train = np.ones(y_train.shape[0])
-
-    x_test = tf.cast(x_test / 255, dtype=tf.float32)
     m_test = np.zeros(y_test.shape[0])
 
     member = np.r_[m_train, m_test]
