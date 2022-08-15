@@ -125,7 +125,7 @@ We evaluate our BlindMI under four defenses:
 
 # Citation
 Please cite the following paper if you use this code:
-'''
+```
 @inproceedings{BlindMI,
   author = {Hui, Bo and Yang, Yuchen and Yuan, Haolin and Burlina, Philippe and Gong, Neil Zhenqiang and Cao, Yinzhi},
   title = {Practical Blind Membership Inference Attack via Differential Comparisons},
@@ -133,4 +133,4 @@ Please cite the following paper if you use this code:
   year = {2021}, 
   month = {February},
 }
-'''
+```
