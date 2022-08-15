@@ -122,3 +122,14 @@ We evaluate our BlindMI under four defenses:
 + Diiferential Privacy: [code](https://github.com/tensorflow/privacy)
 + Adverserial Regularization: [paper](https://arxiv.org/pdf/1807.05852.pdf) - [code](https://github.com/NNToan-apcs/python-DP-DL)
 + MMD+Mix-up: [paper](https://arxiv.org/pdf/2002.12062.pdf)
+
+# Citation
+Please cite the following paper if you use this code:
+
+@inproceedings{BlindMI,
+  author = {Hui, Bo and Yang, Yuchen and Yuan, Haolin and Burlina, Philippe and Gong, Neil Zhenqiang and Cao, Yinzhi},
+  title = {Practical Blind Membership Inference Attack via Differential Comparisons},
+  booktitle = {Proceedings of the Network and Distributed System Security Symposium (NDSS'21)},
+  year = {2021}, 
+  month = {February},
+}
